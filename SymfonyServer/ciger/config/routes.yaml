@@ -1,0 +1,34 @@
+createCast:
+    path: /cast/create
+    controller: App\Controller\CastController::createCast
+updateCast:
+    path: /cast/update
+    controller: App\Controller\CastController::updateCast
+getAllCast:
+    path: /cast
+    controller: App\Controller\CastController::findAll
+
+findCastById:
+    path: /cast/{id}
+    controller: App\Controller\CastController::findCastById
+deleteCast:
+    path: /cast/delete/{id}
+    controller: App\Controller\CastController::deleteCast
+
+
+createCategory:
+    path: /category/create
+    controller: App\Controller\CategoryController::createCategory
+updateCategory:
+    path: /category/update
+    controller: App\Controller\CategoryController::updateCategory
+getAllCategory:
+    path: /category
+    controller: App\Controller\CategoryController::findAll
+
+findCategoryById:
+    path: /category/{id}
+    controller: App\Controller\CategoryController::findCategoryById
+deleteCategory:
+    path: /category/delete/{id}
+    controller: App\Controller\CategoryController::deleteCategory

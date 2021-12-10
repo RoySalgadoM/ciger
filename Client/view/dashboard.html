@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gb mb-1" >
+        <div class="container-fluid" id="nav">
+            
+
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card text-center bg-gb navbar-dark">
+                    <div class="card-header text-white">
+                        Dashboard
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-lg-3 mb-3">
+                                <div class="card text-center">
+                                    <img src="../resources/img/usuario.png" class="rounded mx-auto d-block m-2" width="200px"  alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Administrar usuarios</h5>
+                                        <p class="card-text">Lleve el control de los usuarios, es posible consultarlos, modificarlos o darlos de baja del sistema</p>
+                                        <a href="/view/userPanel.html" class="btn btn-primary">Ir al panel de usuarios</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-lg-3 mb-3">
+                                <div class="card text-center">
+                                    <img src="../resources/img/pelicula.png" class="rounded mx-auto d-block m-2" width="200px" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Administrar películas</h5>
+                                        <p class="card-text">Lleve el control de las películas, es posible consultarlas, modificarlas o darlas de baja del sistema</p>
+                                        <a href="/view/moviePanel.html" class="btn btn-primary">Ir al panel de películas</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-lg-3 mb-3">
+                                <div class="card text-center">
+                                    <img src="../resources/img/category.png" class="rounded mx-auto d-block m-2" width="200px" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Administrar categorías</h5>
+                                        <p class="card-text">Lleve el control de las categorías, es posible consultarlas, modificarlas o darlas de baja del sistema</p>
+                                        <a href="/view/categoryPanel.html" class="btn btn-primary">Ir al panel de categorías</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-lg-3 mb-3">
+                                <div class="card text-center">
+                                    <img src="../resources/img/actor.png" class="rounded mx-auto d-block m-2" width="200px" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Administrar reparto</h5>
+                                        <p class="card-text">Lleve el control del reparto, es posible consultarlo, modificarlo o darlo de baja del sistema</p>
+                                        <a href="/view/castPanel.html" class="btn btn-primary">Ir al panel del reparto</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        2 days ago
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../js/implementNav.js"></script>
+    <script src="../js/dashboard.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+
+</html>

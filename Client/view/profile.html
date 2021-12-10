@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+</head>
+
+<body onload="getData()">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gb mb-1">
+        <div class="container-fluid" id="nav">
+
+
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row text-white">
+            <div class="col-12">
+                <div class="card text-center bg-gb navbar-dark">
+                    <div class="card-header text-white">
+                        <h2>Datos personales</h2>
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="return false">
+                            <div class="row">
+
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="mb-4">
+                                        <label for="exampleInputPassword1" class="form-label">Nombre</label>
+                                        <input required type="text" class="form-control text-center" id="name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="mb-4">
+                                        <label for="exampleInputPassword1" class="form-label">Primer apellido</label>
+                                        <input required type="text" class="form-control text-center " id="surname">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="mb-4">
+                                        <label for="exampleInputPassword1" class="form-label">Segundo
+                                            apellido(Opcional)</label>
+                                        <input type="text" class="form-control text-center" id="secondSurname">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" onclick="modifyPerson()" class="btn green-btn">Guardar
+                                cambios</button>
+                        </form>
+
+                    </div>
+                    <div class="card-footer">
+                        Realice cambios en sus datos personales, posteriormente a la modificación deberá iniciar sesión
+                        de nuevo
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container-fluid mt-4">
+        <div class="row text-white">
+            <div class="col-12">
+                <div class="card text-center bg-gb navbar-dark">
+                    <div class="card-header text-white">
+                        <h2>Datos de inicio de sesión</h2>
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="return false">
+                            <div class="row">
+
+                                <div class="col-lg-6 col-sm-12">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                                        <input readonly type="email" class="form-control text-center" id="email"
+                                            aria-describedby="emailHelp">
+                                        <div id="emailHelp" class="form-text">El correo electrónico no se puede
+                                            modificar
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-sm-12 ">
+                                    <div class="mb-4">
+                                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                                        <input readonly placeholder="Imposible visualizar la contraseña" type="text"
+                                            class="form-control mb-3 text-center">
+                                        <button type="submit" onclick="" data-bs-toggle="modal"
+                                            data-bs-target="#password" class="btn green-btn">Cambiar contraseña</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#deleteP" class="btn btn-danger">Eliminar cuenta</button>
+                        </form>
+
+                    </div>
+                    <div class="card-footer">
+                        Realice cambios en sus datos de inicio de sesión, posteriormente a la modificación deberá
+                        iniciar sesión de nuevo
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="password" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Ingrese la nueva contraseña</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <form onsubmit="return false;">
+                        <div class="mb-4">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña actual</label>
+                            <input required type="password" class="form-control" id="oldPassword">
+                        </div>
+                        <div class="mb-4">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                            <input title="Debe incluir minusculas y como minimo un numero, un signo y una mayuscula"
+                                pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{4,16}$"
+                                required type="password" class="form-control" id="newPassword">
+                            <div id="emailHelp" class="form-text">Ingresa una contraseña segura
+                            </div>
+                        </div>
+                        <div class="mb-4 text-center">
+                            <label for="exampleInputPassword1" class="form-label">Confirmar contraseña</label>
+                            <input title="Debe incluir minusculas y como minimo un numero, un signo y una mayuscula"
+                                pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{4,16}$"
+                                required type="password" class="form-control mb-4" id="confirmPassword">
+                            <button type="submit" onclick="chgPass()" class="btn green-btn">Cambiar contraseña</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="deleteP" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Ingrese su contraseña para eliminar su cuenta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <label for="exampleInputPassword1" class="form-label">Contraseña actual</label>
+                        <input required type="password" class="form-control" id="oldPasswordR">
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeRegister" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" onclick="deleteProfile()" class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/implementNav.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

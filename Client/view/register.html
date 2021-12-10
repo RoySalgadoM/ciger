@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+</head>
+
+<body class="transitionFade">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gb mb-1">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="/index.html">Inicio</a>
+                    <a class="nav-link" href="#">Categorías</a>
+                </div>
+            </div>
+            <div class="flex-row-reverse bd-highlight green-btn" id="contLog">
+                <a class="btn green-btn" href="/view/login.html">Iniciar sesión</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="row text-center text-white carousel-v-center">
+            <div class="col-lg-6 col-sm-12">
+                <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img src="../resources//img/VN-C.jpg" class="d-block w-100" alt="">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="../resources//img/MK-C.jpeg" class="d-block w-100" alt="">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="../resources//img/NORESPIRES-C.jpg" class="d-block w-100" alt="">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <h1 class="mb-3">Registrate para comprar tus películas</h1>
+                <form onsubmit="return false">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                                <input required type="email" class="form-control" id="email"
+                                    aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">Se enviará un código para verificar el correo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                                <input title="Debe incluir minusculas y como minimo un numero, un signo y una mayuscula"
+                                    pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{4,16}$"
+                                    required type="password" class="form-control" id="password">
+                                <div id="emailHelp" class="form-text">Ingresa una contraseña segura
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label">Confirmar contraseña</label>
+                                <input title="Debe incluir minusculas y como minimo un numero, un signo y una mayuscula"
+                                    pattern="^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{4,16}$"
+                                    required type="password" class="form-control" id="confirmPassword">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label">Nombre</label>
+                                <input required type="text" class="form-control" id="name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label">Primer apellido</label>
+                                <input required type="text" class="form-control" id="surname">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="mb-4">
+                                <label for="exampleInputPassword1" class="form-label">Segundo apellido(Opcional)</label>
+                                <input type="text" class="form-control" id="secondSurname">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" onclick="code()" class="btn green-btn">Registrarse</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="code" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">El código ha sido enviado a su correo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 text-center">
+                        <label for="exampleInputEmail1" class="form-label">Código</label>
+                        <input required type="number" class="form-control text-center" id="codeN"
+                            aria-describedby="emailHelp">
+                        <button type="button" onclick="register()" class="btn green-btn mt-3">Registrarse</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/register.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
