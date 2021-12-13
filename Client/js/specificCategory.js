@@ -2,8 +2,7 @@ const url = "http://localhost:4000/movie";
 
 const getUrl = window.location.search;
 const urlParams = new URLSearchParams(getUrl);
-var pay_id = urlParams.get('paymentId');
-var payer_id = urlParams.get('PayerID');
+let nameCategory = urlParams.get('name');
 
 
 
@@ -47,95 +46,59 @@ let buyModal = new bootstrap.Modal(document.getElementById('buy'), {
     keyboard: false
 })
 
-const getAllNav = async () => {
-    executePayment();
-    let content = 1;
-    await $.ajax({
-        method: "GET",
-        url: url + '/ultimateMovies'
-    }).done(function (res) {
-        movie = res.movie
-
-        for (let i = 0; i < movie.length; i++) {
-            let array8 = new Uint8Array(movie[i].image.data);
-            var image = new TextDecoder().decode(array8);
-            if (movie[i].status == 1) {
-                if (content == 1) {
-
-                    content = `<div class="carousel-item active">
-                    <img src="data:image/*;base64,${image}" class="d-block w-100" alt="">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>${movie[i].title}</h5>
-                        <p>${movie[i].description}</p>
-                    </div>
-                </div>`;
-                } else {
-                    content += `<div class="carousel-item ">
-                    <img src="data:image/*;base64,${image}" class="d-block w-100" alt="">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>${movie[i].title}</h5>
-                        <p>${movie[i].description}</p>
-                    </div>
-                </div>`;
-                }
-
-            }
-
-
-        }
-
-    });
-    $("#carouselItems").html(content);
-}
-
-
-getAllNav();
 const getAll = async () => {
     let content = 1;
     await $.ajax({
         method: "GET",
-        url: url
+        url: url + "/category/"+ nameCategory
     }).done(function (res) {
-        movie = res.movie
-
-        for (let i = 0; i < movie.length; i++) {
-            let array8 = new Uint8Array(movie[i].image.data);
-            var image = new TextDecoder().decode(array8);
-            if (movie[i].status == 1) {
-                if (content == 1) {
-                    content = `<div class="col-md-6 col-sm-12 col-lg-3 mb-3">
-                    <div class="card text-center">
-                        <img src="data:image/*;base64,${image}" class="rounded mx-auto d-block m-2" width="200px" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">${movie[i].title}</h5>
-                            <p class="card-text">${movie[i].originalTitle}</p>
-                            <p class="card-text">${movie[i].description}</p>
-                            <p class="card-text" style="font-size: 20px; color: red !important;">$${movie[i].price}</p>
-                            <a onclick="buy(${movie[i].idMovie})" class="btn green-btn">Comprar</a>
+        if(res.message ==="No exist"){
+            location.href = "/view/category.html";
+        }else{
+            movie = res.movie
+            for (let i = 0; i < movie.length; i++) {
+                let array8 = new Uint8Array(movie[i].image.data);
+                var image = new TextDecoder().decode(array8);
+                if (movie[i].status == 1) {
+                    if (content == 1) {
+                        content = `<div class="col-md-6 col-sm-12 col-lg-3 mb-3">
+                        <div class="card text-center">
+                            <img src="data:image/*;base64,${image}" class="rounded mx-auto d-block m-2" width="200px" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${movie[i].title}</h5>
+                                <p class="card-text">${movie[i].originalTitle}</p>
+                                <p class="card-text">${movie[i].description}</p>
+                                <p class="card-text" style="font-size: 20px; color: red !important;">$${movie[i].price}</p>
+                                <a onclick="buy(${movie[i].idMovie})" class="btn green-btn">Comprar</a>
+                            </div>
                         </div>
+                    </div>`;
+                    } else {
+                        content += `<div class="col-md-6 col-sm-12 col-lg-3 mb-3">
+                <div class="card text-center">
+                    <img src="data:image/*;base64,${image}" class="rounded mx-auto d-block m-2" width="200px" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${movie[i].title}</h5>
+                        <p class="card-text">${movie[i].originalTitle}</p>
+                        <p class="card-text">${movie[i].description}</p>
+                        <p class="card-text" style="font-size: 20px; color: red !important;">$${movie[i].price}</p>
+                        <a onclick="buy(${movie[i].idMovie})" class="btn green-btn">Comprar</a>
                     </div>
-                </div>`;
-                } else {
-                    content += `<div class="col-md-6 col-sm-12 col-lg-3 mb-3">
-            <div class="card text-center">
-                <img src="data:image/*;base64,${image}" class="rounded mx-auto d-block m-2" width="200px" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${movie[i].title}</h5>
-                    <p class="card-text">${movie[i].originalTitle}</p>
-                    <p class="card-text">${movie[i].description}</p>
-                    <p class="card-text" style="font-size: 20px; color: red !important;">$${movie[i].price}</p>
-                    <a onclick="buy(${movie[i].idMovie})" class="btn green-btn">Comprar</a>
                 </div>
-            </div>
-        </div>`;
+            </div>`;
+                    }
+    
                 }
-
+    
             }
-
+            $("#cardContainer").html(content);
         }
+        
+        
+        
 
     });
-    $("#cardContainer").html(content);
+    
 }
 
 const buy = async (id) => {

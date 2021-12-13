@@ -20,9 +20,10 @@ app.use(require('./routes/index.js'));
 app.use('/person',require('./routes/person.js'));
 app.use('/user',require('./routes/user.js'));
 app.use('/use',require('./routes/use.js'));
-// app.use('/paypal',require('./routes/paypal.js'));
+app.use('/paypal',require('./routes/paypal.js'));
 app.use('/movie',require('./routes/movie.js'));
 app.use('/movieCast',require('./routes/movieCast.js'));
+app.use('/sale',require('./routes/sale.js'));
 
 app.listen(app.get('port'), () =>{
     console.log("Server on port", app.get('port'));

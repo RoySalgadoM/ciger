@@ -25,7 +25,16 @@ router.get('/:id',async(req,res)=>{
     });
 });
 
-
+router.get('/cast/:id',async(req,res)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    const {id} = req.params;
+    let cast = await pool.query('SELECT c.name, c.idCast FROM cast c inner join movie_has_cast m on m.id_cast = c.idCast where m.id_movie = ?;',[id]);
+    res.json({
+        status:"200",
+        message:"Cast has been recovered",
+        cast: cast
+    });
+});
 
 router.post('/create',async(req,res)=>{
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -46,7 +55,8 @@ router.post('/create',async(req,res)=>{
 router.post('/delete/:id',async(req,res)=>{
     res.setHeader('Access-Control-Allow-Origin', '*');
     const {id} = req.params;
-    await pool.query('DELETE FROM MOVIE_HAS_CAST WHERE id_Movie = ?',[id]);
+    const {cast} = req.body;
+    await pool.query('DELETE FROM MOVIE_HAS_CAST WHERE id_Movie =? AND id_cast = ?',[id,cast]);
     res.json({
         status:"200",
         message:"DELETE successful"

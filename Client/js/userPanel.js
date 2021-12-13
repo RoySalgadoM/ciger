@@ -110,6 +110,7 @@ const register = async () => {
     }
 }
 const getAll = async () => {
+    
     let persons;
     let content;
     await $.ajax({

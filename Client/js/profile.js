@@ -22,13 +22,14 @@ const getData = async () => {
 
 const modifyPerson = async () => {
     let token = localStorage.getItem('token');
-    getToken = { token }
+    getToken = {token}
     let name = document.getElementById('name').value
     let surname = document.getElementById('surname').value
     let secondSurname = document.getElementById('secondSurname').value
     let id;
     let status = 1;
     let idUser;
+
     await $.ajax({
         method: "POST",
         url: 'http://localhost:4000/user/returnId',

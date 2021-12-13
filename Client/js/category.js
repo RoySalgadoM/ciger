@@ -16,7 +16,7 @@ const getAll = async () => {
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">${category[i].name}</h5>
-                            <a href="#" class="btn btn-primary">Ir</a>
+                            <a class="btn btn-primary" onclick="redMovie('${category[i].name}')">Ir</a>
                         </div>
                     </div>
                 </div>`;
@@ -25,7 +25,7 @@ const getAll = async () => {
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <h5 class="card-title">${category[i].name}</h5>
-                                        <a href="#" class="btn btn-primary">Ir</a>
+                                        <a class="btn btn-primary" onclick="redMovie('${category[i].name}')">Ir</a>
                                     </div>
                                 </div>
                             </div>`;
@@ -38,4 +38,16 @@ const getAll = async () => {
         
     });
     $("#insert").html(content);
+}
+const redMovie = async(name) =>{
+    await $.ajax({
+        method: "GET",
+        url: 'http://localhost:4000/movie/category/'+name
+    }).done(function (res) {
+        if(res.message ==="Have not Movies"){
+            
+        }else{
+            location.href = "/view/specificCategory.html?name="+name;
+        }
+    });
 }

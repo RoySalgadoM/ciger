@@ -36,6 +36,38 @@ router.get('/:id',async(req,res)=>{
     });
 });
 
+router.get('/category/:name',async(req,res)=>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    const {name} = req.params;
+    let category = await pool.query('SELECT idCategory FROM CATEGORY WHERE name=?',[name]);
+    
+    if(category.hasOwnProperty(0)){
+        let {idCategory} = category[0]
+        let movie = await pool.query('SELECT * FROM MOVIE WHERE id_category=?',[idCategory]);
+        if(movie.hasOwnProperty(0)){
+            res.json({
+                status:"200",
+                message:"Movies",
+                movie:movie
+            });
+        }else{
+            res.json({
+                status:"404",
+                message:"Have not Movies"
+            });
+        }
+        
+    }else{
+        res.json({
+            status:"404",
+            message:"No exist"
+        });
+    }
+    
+    
+    
+});
+
 router.post('/create',async(req,res)=>{
     res.setHeader('Access-Control-Allow-Origin', '*');
     const dateNow = Date.now();
@@ -61,9 +93,13 @@ router.post('/update/:id',async(req,res)=>{
     const date_updated = new Date(dateNow);
     const {id} = req.params;
     let {title, originalTitle, description, runningTime, image, price, id_category} = req.body;
-    let movie = {title, originalTitle, description, runningTime, date_updated, image, price, id_category}
-    
-
+    let movie;
+    if(image==='NoRequired'){
+        console.log('object')
+        movie = {title, originalTitle, description, runningTime, date_updated, price, id_category}
+    }else{
+        movie = {title, originalTitle, description, runningTime, date_updated, image, price, id_category}
+    }
     movieIn = await pool.query('UPDATE MOVIE SET ? WHERE idMovie = ?',[movie,id]);
     
     res.json({

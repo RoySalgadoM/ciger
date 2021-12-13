@@ -37,7 +37,8 @@ if (localStorage.getItem('token') != null) {
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="menu">
                                     <a class="dropdown-item" href="/view/dashboard.html" onclick="">Panel de administración</a>
-                                    <a class="dropdown-item" href="/view/profile.html" onclick="">Mi perfil</a>
+                                    <a class="dropdown-item" href="/view/sales.html" onclick="">Tus compras</a>
+                                    <a class="dropdown-item" href="/view/profile.html" onclick="">Tu perfil</a>
                                     <a class="dropdown-item" onclick="closeSesion()">Cerrar sesión</a>
                                 </ul>
                             </li>
@@ -62,8 +63,8 @@ if (localStorage.getItem('token') != null) {
                                 <a id="imgNameUser" style="color: white !important;" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"  aria-expanded="false">
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="menu">
-                                    <a class="dropdown-item" href="/view/profile.html" onclick="">Mi perfil</a>
-                                    <a class="dropdown-item" onclick="">Mis compras</a>
+                                <a class="dropdown-item" href="/view/sales.html" onclick="">Tus compras</a>
+                                <a class="dropdown-item" href="/view/profile.html" onclick="">Tu perfil</a>
                                     <a class="dropdown-item" onclick="closeSesion()">Cerrar sesión</a>
                                 </ul>
                             </li>
@@ -105,9 +106,9 @@ if (localStorage.getItem('token') != null) {
 
 
 
-const closeSesion = async() => {
+const closeSesion = async () => {
     let token = localStorage.getItem('token');
-    getToken = {token}
+    getToken = { token }
     console.log('object')
     await $.ajax({
         method: "POST",
